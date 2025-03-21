@@ -28,7 +28,7 @@
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "fr_FR.UTF-8";
@@ -61,59 +61,25 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
- 
-  services.xserver.enable = true;
-  services.xserver.layout = "fr";
-  services.xserver.displayManager.startx.enable = true;  
-  
-  nixpkgs.config.permittedInsecurePackages = [
-                "dotnet-sdk-7.0.410"
-              ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   opera
-   i3status
-   opera
-   dmenu
-   xterm
-   i3
-   alacritty
-   jetbrains.rider
-   jetbrains.pycharm-community
-   git
-   unityhub
-   libreoffice
-   discord
-   feh
-   gimp
-   emacsPackages.outlook
-   emacs
-   onedrive
-   gmailctl
-   tree
-   octave
-   dotnet-sdk_7
-   vscode
-                 
-              
-   # A rajouté après
-   # picom # Avec une config pour que ça marche   
-
-  #  wget
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    jetbrains.rider
+    git
+    opera
+    discord
+    sway
+    waybar
+    dmenu
+    rofi
+    unityhub
+    gimp
+    networkmanager
   ];
-  
-  # Pour .NET 7.0
-                
-  # I3
-  services.xserver.windowManager.i3.enable = true;
- 
-  # Blue
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  # Sway config
+  programs.sway.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
