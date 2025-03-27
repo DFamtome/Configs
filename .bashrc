@@ -8,6 +8,6 @@ alias tp='cd ~/Documents/tp'
 
 push() {
 	git add .
-	git commit -m $MSG
+	git commit -m $0
 	git push
 };
