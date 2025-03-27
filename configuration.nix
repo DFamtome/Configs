@@ -68,16 +68,22 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     jetbrains.rider
     git
-    opera
+    firefox 
     discord
     sway
-    waybar
-    dmenu
     rofi
     unityhub
     gimp
     networkmanager
+    alacritty
+    dotnet-sdk_7
   ];
+  # Insecure packages
+  nixpkgs.config.permittedInsecurePackages = [
+                "dotnet-sdk-7.0.410"
+              ];
+
+
   # Sway config
   programs.sway.enable = true;
 

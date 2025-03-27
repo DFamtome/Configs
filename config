@@ -21,7 +21,7 @@ set $menu rofi -show run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
- output * bg ~/Images/bg/maxresdefault.jpg fill
+ output * bg ~/Pictures/bg/maxresdefault.jpg fill
 #
 # Example configuration:
 #
@@ -202,7 +202,7 @@ input * {
 
 # Screen
 output HDMI-A-4 enable
-output HDMI-A-4 resolution 1920x1080 position 1920 0
+output HDMI-A-4 resolution 1920x1080 position 1920 0 
 
 
 #
@@ -214,13 +214,28 @@ output HDMI-A-4 resolution 1920x1080 position 1920 0
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while echo $(cat /sys/class/power_supply/BAT0/capacity)% \| [$(date +'%X %d/%m/%Y')] ; do sleep 5 ; done
 
     colors {
         statusline #ffffff
         background #000000
         inactive_workspace #000000 #000000 #ffffff
     }
+    
 }
 
-include /etc/sway/config.d/*
+# Pour suppr les brodures 
+for_window [all] border none
+
+# Les fenntres transparentes
+
+for_window [all] opacity 0.9
+
+bindsym $mod+Ctrl+t for_window [container] opacity 1
+bindsym $mod+Ctrl+Shift+t for_window [focus] opacity 0.9
+
+# Gaps
+gaps inner 2
+gaps outer 2
+
+# include /etc/sway/config.d/*
