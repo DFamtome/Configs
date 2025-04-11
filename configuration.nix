@@ -68,7 +68,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     jetbrains.rider
     git
-    firefox 
+    opera 
     discord
     sway
     rofi
@@ -77,15 +77,22 @@
     networkmanager
     alacritty
     dotnet-sdk_7
+    pkgs.nvtopPackages.nvidia
+    dmenu
   ];
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [
                 "dotnet-sdk-7.0.410"
               ];
+  services.flatpak.enable = true;
+
+  services.xserver.windowManager.dwm.enable = true; 
 
 
   # Sway config
   programs.sway.enable = true;
+  
+  
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

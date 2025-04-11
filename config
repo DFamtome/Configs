@@ -11,8 +11,6 @@ set $mod Mod4
 # Home row direction keys, like vim
 
 
-
-
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
@@ -68,6 +66,7 @@ set $menu rofi -show run
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+Shift+d exec dmenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -80,7 +79,7 @@ set $menu rofi -show run
     bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+l exec sway exit
 #
 # Moving around:
 #
@@ -147,7 +146,7 @@ set $menu rofi -show run
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
+    # Move focrs to the parent container
     bindsym $mod+a focus parent
 #
 # Scratchpad:
@@ -200,12 +199,22 @@ input * {
 	xkb_layout fr
 }
 
+output HDMI-A-4 {
+	resolution 1920x1080
+	scale 0.9
+	transform normal
+	pos 1920 3840
+}
+
 # Screen
-output HDMI-A-4 enable
-output HDMI-A-4 resolution 1920x1080 position 1920 0 
+output eDP-1 {
+    resolution 1920x1080
+    scale 1 
+    transform normal
+    pos 0 1925
+}
 
 
-#
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -229,13 +238,10 @@ for_window [all] border none
 
 # Les fenntres transparentes
 
-for_window [all] opacity 0.9
-
-bindsym $mod+Ctrl+t for_window [container] opacity 1
-bindsym $mod+Ctrl+Shift+t for_window [focus] opacity 0.9
+for_window [all] opacity 0.95
 
 # Gaps
 gaps inner 2
 gaps outer 2
 
-# include /etc/sway/config.d/*
+
