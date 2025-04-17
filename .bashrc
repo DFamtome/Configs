@@ -1,13 +1,5 @@
-# èstétike
-PS1="\e[31m\]The goat :\e[34m\] \w\n\e[37m\]$ "
+PS1="\e[31m\]Me, mine and myself :\e[32m\] \w \n\e[37m\]$ "
 
 # Alias
-alias tp='cd ~/Documents/tp'
 
-# Push function
-
-push() {
-	git add .
-	git commit -m $0
-	git push
-};
+alias tp='cd ~/tp'

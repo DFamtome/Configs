@@ -19,7 +19,7 @@ set $menu rofi -show run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
- output * bg ~/Pictures/bg/maxresdefault.jpg fill
+output * bg ~/Pictures/bg/bggd.png fill
 #
 # Example configuration:
 #
@@ -170,7 +170,7 @@ mode "resize" {
     # down will grow the containers height
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
-    
+    bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
 
@@ -200,7 +200,6 @@ input * {
 }
 
 output HDMI-A-4 {
-	resolution 1920x1080
 	scale 0.9
 	transform normal
 	pos 1920 3840

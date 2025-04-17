@@ -79,6 +79,10 @@
     dotnet-sdk_7
     pkgs.nvtopPackages.nvidia
     dmenu
+    firefox
+    libreoffice
+    zip
+    unzip
   ];
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [
@@ -88,7 +92,10 @@
 
   services.xserver.windowManager.dwm.enable = true; 
 
-
+  # USB
+  services.devmon.enable = true ;
+  services.gvfs.enable = true ;
+  services.udisks2.enable = true ;
   # Sway config
   programs.sway.enable = true;
   
