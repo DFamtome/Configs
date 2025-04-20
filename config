@@ -199,8 +199,15 @@ input * {
 	xkb_layout fr
 }
 
+output HDMI-A-1 {
+
+	scale 0.8
+	transform normal
+	pos 1920 3840
+}
+
 output HDMI-A-4 {
-	scale 0.9
+	scale 0.8
 	transform normal
 	pos 1920 3840
 }
@@ -208,9 +215,10 @@ output HDMI-A-4 {
 # Screen
 output eDP-1 {
     resolution 1920x1080
-    scale 1 
+    scale 0.9 
     transform normal
-    pos 0 1925
+    pos 0 1920
+    
 }
 
 
@@ -219,10 +227,10 @@ output eDP-1 {
 # Read `man 5 sway-bar` for more information about this section.
  bar {
     position top
-
+    
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while echo $(cat /sys/class/power_supply/BAT0/capacity)% \| [$(date +'%X %d/%m/%Y')] ; do sleep 5 ; done
+    status_command while echo $(cat /sys/class/power_supply/BAT0/status) : $(cat /sys/class/power_supply/BAT0/capacity)% \| [$(date +'%X %d/%m/%Y')] ; do sleep 5 ; done
 
     colors {
         statusline #ffffff
