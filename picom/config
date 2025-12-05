@@ -1,0 +1,9 @@
+
+opacity-rule = [
+	"100:class_g = 'i3lock'",
+	];
+
+active-opacity=0.9
+inactive-opacity=0.9
+
+corner-radius=5
