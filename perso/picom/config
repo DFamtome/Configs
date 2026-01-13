@@ -1,6 +1,7 @@
 
 opacity-rule = [
 	"100:class_g = 'i3lock'",
+	"100:_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'",
 	];
 
 active-opacity=0.9

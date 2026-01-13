@@ -29,15 +29,20 @@ export EDITOR=vim
 
 # Config perso
 
-
 alias ls='ls --color=auto'
+alias l='ls -la --color=auto'
 alias grep='grep --color -n'
 alias commit='git add -A && git commit'
+alias mount='sudo mount'
 
 alias cl='git clone'
 alias rd='rm -rf '
 alias tag='git tag -ma'
 alias push='git push'
 
+alias reboot='systemctl reboot'
+alias poweroff='systemctl poweroff'
+
 
 PS1='\e[34m\]Le jujudorange \e[37m\]:\e[32m\] \w \e[37m\]\n$ '
+. "$HOME/.cargo/env"
