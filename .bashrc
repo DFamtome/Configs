@@ -45,4 +45,3 @@ alias poweroff='systemctl poweroff'
 
 
 PS1='\e[34m\]Le jujudorange \e[37m\]:\e[32m\] \w \e[37m\]\n$ '
-. "$HOME/.cargo/env"
