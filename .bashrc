@@ -29,6 +29,9 @@ export EDITOR=vim
 
 # Config perso
 
+alias prog='cd ~/Documents/prog'
+alias projet='cd ~/Documents/projets'
+
 alias ls='ls --color=auto'
 alias l='ls -la --color=auto'
 alias grep='grep --color -n'
@@ -43,5 +46,8 @@ alias push='git push'
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
 
+display_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
 
-PS1='\e[34m\]Le jujudorange \e[37m\]:\e[32m\] \w \e[37m\]\n$ '
+PS1='\e[34m\]Le jujudorange \e[37m\]:\e[32m\] \w\e[36m\]$(display_git_branch)\e[37m\]\n$ '
