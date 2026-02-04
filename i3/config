@@ -225,29 +225,21 @@ bindsym $mod+r mode "resize"
 ###################### I3 VIEW ##################
 #################################################
 
-for_window [all] border pixel 2
+for_window [all] border pixel 2.5
 
-client.focused #FFFFFF #EE5555 #FFFFFF #FFFFFF
+client.focused #FFFFFF #3535AA #FFFFFF #FFFFFF
 client.unfocused #FFFFFF #AAAAAA #FFFFFF #FFFFFF
 
 exec_always --no-startup-id picom --backend glx --config ~/.config/picom/config
 
 # Gaps
-gaps outer 2
-gaps inner 2
+gaps outer 0
+gaps inner 10
 
+smart_gaps on
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-set $red #EE5555
-set $blue #5555EE
-set $green #55EE55
-
-set $cyan #55EEEE
 
 bar {
 	status_command ~/.config/i3/my_status.sh
     	position top
-
-	
 }
