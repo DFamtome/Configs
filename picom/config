@@ -1,3 +1,7 @@
+fade=true;
+
+fade-delta=4;
+
 
 blur: {
   method = "dual_kawase";
@@ -8,7 +12,7 @@ blur: {
 }
 
 opacity-rule = [
-	"100:fullscreen",	
+	"15:class_g = 'i3lock'"
 	];
 
 active-opacity=0.8
