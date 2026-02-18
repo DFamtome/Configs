@@ -1,2 +1,0 @@
-exec nix profile install nixpkgs#picom
-exec nix profile install nixpkgs#flameshot
