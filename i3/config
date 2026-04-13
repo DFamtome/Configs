@@ -24,17 +24,11 @@ font pango:monospace 7
 exec --no-startup-id dex --autostart --environment i3
 
 # Background
-exec_always --no-startup-id feh --bg-fill ~/.config/i3/BG.png
+exec_always --no-startup-id feh --bg-fill ~/.config/i3/BG.jpg
 
 # Displays
 exec --no-startup-id xrandr --output HDMI-1-4 --right-of eDP-1 --auto
 
-# auto start
-exec discord
-exec alacritty
-exec blueman-applet
-exec nm-applet
-exec flameshot
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -245,7 +239,12 @@ bar {
 }
 
 # Nix pakages
-exec nix profile add nixpkgs#picom
+exec --nofork nix profile add nixpkgs#picom
 exec nix profile add nixpkgs#flameshot
+exec --nofork nix profile add nixpkgs#zsh
 
+exec discord
+exec alacritty
+exec blueman-applet
+exec nm-applet
 exec flameshot
