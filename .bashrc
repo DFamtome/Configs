@@ -1,7 +1,7 @@
 # ~/.bashrc
 
 exec zsh
-
+fastfetch
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 

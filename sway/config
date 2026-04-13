@@ -1,0 +1,82 @@
+# --- Variables ---
+set $mod Mod4
+set $menu wofi --show run
+
+# --- Sortie (Écran) ---
+# Utilise 'swaymsg -t get_outputs' pour trouver le nom de ton écran
+output * bg ~/.config/i3/BG.png fill
+
+# Pour mettre HDMI-A-1 à gauche de eDP-1 (si HDMI fait 1920 de large)
+output HDMI-A-1 pos 0 0
+output eDP-1 pos 1920 0
+
+# --- Entrées (Clavier/Souris) ---
+input "type:keyboard" {
+    xkb_layout fr
+}
+
+input "type:touchpad" {
+    tap enabled
+}
+
+# --- Raccourcis de base ---
+bindsym $mod+Shift+q  kill
+bindsym $mod+d        exec $menu
+bindsym $mod+Shift+e  exec sway exit 
+bindsym $mod+Shift+r  exec sway reload
+bindsym $mod+Return   exec alacritty
+
+# --- Racourcies espaces ---
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+ampersand  workspace number $ws1
+bindsym $mod+eacute     workspace number $ws2
+bindsym $mod+quotedbl   workspace number $ws3
+bindsym $mod+apostrophe workspace number $ws4
+bindsym $mod+parenleft  workspace number $ws5
+bindsym $mod+minus      workspace number $ws6
+bindsym $mod+egrave     workspace number $ws7
+bindsym $mod+underscore workspace number $ws8
+bindsym $mod+ccedilla   workspace number $ws9
+bindsym $mod+agrave     workspace number $ws10
+
+bindsym $mod+Shift+ampersand  move container to workspace number $ws1
+bindsym $mod+Shift+eacute     move container to workspace number $ws2
+bindsym $mod+Shift+quotedbl   move container to workspace number $ws3
+bindsym $mod+Shift+apostrophe move container to workspace number $ws4
+bindsym $mod+Shift+parenleft  move container to workspace number $ws5
+bindsym $mod+Shift+minus      move container to workspace number $ws6
+bindsym $mod+Shift+egrave     move container to workspace number $ws7
+bindsym $mod+Shift+underscore move container to workspace number $ws8
+bindsym $mod+Shift+ccedilla   move container to workspace number $ws9
+bindsym $mod+Shift+agrave     move container to workspace number $ws10
+
+
+
+# --- Déplacement---
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# --- Movement --- 
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# --- Auto start ---
+exec waybar
+exec discord
+exec flameshot
+exec alacritty
+
