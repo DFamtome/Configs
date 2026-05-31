@@ -4,7 +4,7 @@ set $menu wofi --show run
 
 # --- Sortie (Écran) ---
 # Utilise 'swaymsg -t get_outputs' pour trouver le nom de ton écran
-output * bg ~/.config/i3/BG.png fill
+output * bg ~/.config/sway/hk_1.jpg fill
 
 # Pour mettre HDMI-A-1 à gauche de eDP-1 (si HDMI fait 1920 de large)
 output HDMI-A-1 pos 0 0
@@ -80,3 +80,10 @@ exec discord
 exec flameshot
 exec alacritty
 
+# --- Borders ---
+default_border pixel 2
+
+# --- Opacity ---
+# Applique 90% d'opacité à toutes les fenêtres par défaut
+for_window [class=".*"] opacity 0.9
+for_window [app_id=".*"] opacity 0.9

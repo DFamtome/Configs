@@ -1,0 +1,38 @@
+window#waybar {
+	background-color: rgba(0, 0, 0, 0.9)
+}
+
+#clock
+{
+	color: rgb(255, 255, 255);
+}
+
+#workspaces {
+    background-color: #282a36;
+    margin: 0 5px;
+    border-radius: 10px;
+}
+
+/* Style de chaque bouton (chaque espace de travail) */
+#workspaces button {
+    padding: 0 10px;
+    color: #f8f8f2;
+    border: none;
+}
+
+/* Style de l'espace de travail actuellement visible/actif */
+#workspaces button.focused {
+    color: #4C7899;
+    background-color: #333649;
+    border-bottom: 3px solid #4C7899;
+}
+
+/* Style lorsqu'un espace de travail réclame votre attention */
+#workspaces button.urgent {
+    color: #ff5555;
+    background-color: #ff5555;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
