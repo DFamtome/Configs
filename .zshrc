@@ -80,8 +80,12 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%f"
 
 PROMPT=$'%F{cyan}%n%F{white} : %F{green}%~ $(git_prompt_info)\n%F{white}$ '
 
-alias push="git add -A && git commit && git push"
 alias pac="sudo pacman"
+
+alias push="git add -A && git commit && git push"
+alias ls='ls --color=auto'
+
+
 
 tag()
 {
