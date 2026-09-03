@@ -45,41 +45,47 @@ display_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ | [\1]/'
 }
 
-
-_timer_start() {
-  _cmd_start=$(date +%s%N)
-}
-
-_timer_stop() {
+_prompt_status() {
   local exit_code=$?
-
-  # 1. Gestion du symbole selon le code de retour
+  
   if [ $exit_code -eq 0 ]; then
-    local status_icon="\[\e[1;32m\][✔]\[\e[0m\]"
+    # Succès : Check vert
+    echo -e "\e[0;32m[✔]"
   elif [ $exit_code -eq 130 ]; then
-    local status_icon="\[\e[1;34m\][✘]\[\e[0m\]"
+    # Annulé (Ctrl+C) : Croix bleue
+    echo -e "\e[0;34m[✘]"
   else
-    local status_icon="\[\e[1;31m\][✘]\[\e[0m\]"
+    # Autre erreur : Croix rouge
+    echo -e "\e[0;31m[✘]"
   fi
-
-  # 2. Calcul du temps d'exécution
-  if [ -n "$_cmd_start" ]; then
-    local _cmd_end=$(date +%s%N)
-    local diff=$(( (_cmd_end - _cmd_start) / 1000000 ))
-    if [ $diff -ge 1000 ]; then
-      _elapsed="$(( diff / 1000 )).$(( diff % 1000 ))s"
-    else
-      _elapsed="${diff}ms"
-    fi
-    unset _cmd_start
-  else
-    _elapsed="0ms"
-  fi
-
-  # 3. Mise à jour du prompt complet
-  PS1="${status_icon} \e[34m\]le jujudorange \e[37m\]:\e[32m\] \w\e[36m\]$(display_git_branch)\e[37m\] \[\e[0;35m\](${_elapsed})\[\e[0m\] \n$ "
 }
 
-trap '_timer_start' DEBUG
-PROMPT_COMMAND='_timer_stop'
+export PS1='$(_prompt_status) \[\e[34m\]le jujudorange \[\e[37m\]:\[\e[32m\] \w\[\e[36m\]$(display_git_branch) '
+
+# Fonction déclenchée AVANT l'exécution de la commande
+function timer_start {
+  timer=${timer:-$(date +%s%3N)}
+}
+
+# Fonction déclenchée APRES l'exécution et AVANT l'affichage du PS1
+function timer_stop {
+  if [ -n "$timer" ]; then
+    local delta=$(($(date +%s%3N) - timer))
+    # Convertit les millisecondes en secondes
+    local sec=$(bc <<< "scale=3; $delta / 1000")
+    # Stocke le résultat formaté pour le PS1
+    LAST_EXEC_TIME="${sec}s"
+    unset timer
+  else
+    LAST_EXEC_TIME=""
+  fi
+}
+
+# Associe les fonctions aux signaux de Bash
+trap 'timer_start' DEBUG
+PROMPT_COMMAND='timer_stop'
+
+# Intègre le temps dans votre prompt (PS1)
+PS1+='\[\e[36m\][${LAST_EXEC_TIME}]\[\e[m\] \n$ '
 fastfetch
+
