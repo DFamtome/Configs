@@ -24,7 +24,7 @@ font pango:monospace 7
 exec --no-startup-id dex --autostart --environment i3
 
 # Background
-exec_always --no-startup-id feh --bg-fill ~/.config/i3/BG.jpg
+exec_always --no-startup-id ~/afs/.scripts/wallpaper.sh
 
 # Displays
 exec --no-startup-id xrandr --output HDMI-1-4 --right-of eDP-1 --auto
@@ -105,7 +105,7 @@ bindsym $mod+shift+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
+# focus the child containr
 #bindsym $mod+d focus child10 
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -171,7 +171,7 @@ bindsym $mod+Ctrl+Shift+4 move container to workspace number $ws14
 bindsym $mod+Ctrl+Shift+5 move container to workspace number $ws15
 bindsym $mod+Ctrl+Shift+6 move container to workspace number $ws16
 bindsym $mod+Ctrl+Shift+7 move container to workspace number $ws17
-bindsym $mod+Ctrl+Shift+8 move container to workspace number $ws18
+bindsym $mod+Ctrl+Shift+8 move container to workspace number DECLAR_AND_SET$ws18
 bindsym $mod+Ctrl+Shift+9 move container to workspace number $ws19
 bindsym $mod+Ctrl+Shift+0 move container to workspace number $ws20
 
@@ -183,7 +183,7 @@ bindsym $mod+Shift+e exec i3 exit
 bindsym $mod+Ctrl+Shift+r exec reboot
 bindsym $mod+Ctrl+Shift+p exec poweroff
 
-bindsym $mod+Ctrl+i exec i3lock
+bindsym $mod+Ctrl+i exec ~/afs/.scripts/i3lock.sh
 
 
 # resize window (you can also use the mouse for that)
@@ -219,17 +219,15 @@ bindsym $mod+r mode "resize"
 ###################### I3 VIEW ##################
 #################################################
 
-for_window [all] border pixel 2.5
+for_window [all] border pixel 4
 
-client.focused #FFFFFF #3535AA #FFFFFF #FFFFFF
+client.focused #FFFFFF #000099 #FFFFFF #000099
 client.unfocused #FFFFFF #AAAAAA #FFFFFF #FFFFFF
 
-exec_always --no-startup-id picom --backend glx --config ~/.config/picom/config
 
 # Gaps
 gaps outer 0
-gaps inner 10
-
+gaps inner 5
 smart_gaps on
 
 
@@ -239,12 +237,12 @@ bar {
 }
 
 # Nix pakages
-exec --nofork nix profile add nixpkgs#picom
-exec nix profile add nixpkgs#flameshot
-exec --nofork nix profile add nixpkgs#zsh
+exec ~/afs/.scripts/quick_setup.sh
 
 exec discord
 exec alacritty
 exec blueman-applet
 exec nm-applet
 exec flameshot
+
+exec_always --no-startup-id picom --backend glx --config ~/.config/picom/config.conf

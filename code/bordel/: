@@ -1,0 +1,47 @@
+new ta
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    before_tar/AUTHORS
+#	deleted:    before_tar/doc/rigthts
+#	deleted:    before_tar/src/authors.sh
+#	modified:   my_tarball.tar.gz
+#
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+# Everything below it will be ignored.
+diff --git a/right_tarball/before_tar/AUTHORS b/right_tarball/before_tar/AUTHORS
+deleted file mode 100644
+index b6acb42..0000000
+--- a/right_tarball/before_tar/AUTHORS
++++ /dev/null
+@@ -1 +0,0 @@
+-julien.jollivet
+diff --git a/right_tarball/before_tar/doc/rigthts b/right_tarball/before_tar/doc/rigthts
+deleted file mode 100644
+index 3c1544a..0000000
+--- a/right_tarball/before_tar/doc/rigthts
++++ /dev/null
+@@ -1,5 +0,0 @@
+-A basic docfile for... doc files ?
+-This program creat a well created AUTHORS file
+-There are in src
+-With a amazing code
+-Last line
+diff --git a/right_tarball/before_tar/src/authors.sh b/right_tarball/before_tar/src/authors.sh
+deleted file mode 100644
+index 61eb618..0000000
+--- a/right_tarball/before_tar/src/authors.sh
++++ /dev/null
+@@ -1,4 +0,0 @@
+-#!/bin/sh
+-
+-touch AUTHORS
+-chmod 640 AUTHORS
+diff --git a/right_tarball/my_tarball.tar.gz b/right_tarball/my_tarball.tar.gz
+index f604219..47cdf70 100644
+Binary files a/right_tarball/my_tarball.tar.gz and b/right_tarball/my_tarball.tar.gz differ

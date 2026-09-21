@@ -27,14 +27,34 @@ export EDITOR=vim
 
 
 # Config perso
+alias loop='~/afs/.scripts/loop.sh'
+alias c_builder='~/afs/.scripts/c_builder.sh'
 
 alias ls='ls -l --color=auto'
 alias l='ls -la --color=auto'
-alias grep='grep --color -n'
-alias push='git add -A && git commit && git push'
+alias grep='grep --color'
 
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
+
+alias h='cd ~/afs/S5/epita-ing-assistants-acu-piscine-grand-bain-2029-ing1-julien.jollivet/'
+
+function clang()
+{
+	if [ -f "./*/*.[ch]" ]; then
+		clang-format -i ./*/*.[ch]
+	fi
+
+	if [ -f "./*.[ch]" ]; then 
+		clang-format -i ./*.[ch]
+	fi
+}
+
+function push()
+{
+	clang-format -i $(git ls-files | grep -E "\.[ch]")
+	git add -A && git commit && git push
+}
 
 tag()
 {
@@ -46,7 +66,7 @@ display_git_branch() {
 }
 
 _prompt_status() {
-  local exit_code=$?
+  exit_code=$?
   
   if [ $exit_code -eq 0 ]; then
     # Succès : Check vert
@@ -56,11 +76,9 @@ _prompt_status() {
     echo -e "\e[0;34m[✘]"
   else
     # Autre erreur : Croix rouge
-    echo -e "\e[0;31m[✘]"
+    echo -e "\e[0;31m[✘ ($?)]"
   fi
 }
-
-export PS1='$(_prompt_status) \[\e[34m\]le jujudorange \[\e[37m\]:\[\e[32m\] \w\[\e[36m\]$(display_git_branch) '
 
 # Fonction déclenchée AVANT l'exécution de la commande
 function timer_start {
@@ -86,6 +104,8 @@ trap 'timer_start' DEBUG
 PROMPT_COMMAND='timer_stop'
 
 # Intègre le temps dans votre prompt (PS1)
-PS1+='\[\e[36m\][${LAST_EXEC_TIME}]\[\e[m\] \n$ '
+PS1='$(_prompt_status) \[\e[34m\]le jujudorange \[\e[37m\]:\[\e[32m\] \w \e[33m\][${LAST_EXEC_TIME}]\[\e[m\]\e[36m\]$(display_git_branch) \e[37m\] \n$ '
 fastfetch
+
+
 
