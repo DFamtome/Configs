@@ -80,30 +80,28 @@ _prompt_status() {
   fi
 }
 
-# Fonction déclenchée AVANT l'exécution de la commande
+# Fonction déclenchée AVANT l'exécution
 function timer_start {
-  timer=${timer:-$(date +%s%3N)}
+  [ -z "$timer" ] && timer=${EPOCHREALTIME:-$(date +%s.%N)}
 }
 
-# Fonction déclenchée APRES l'exécution et AVANT l'affichage du PS1
+# Fonction déclenchée APRES l'exécution et AVANT le PS1
 function timer_stop {
   if [ -n "$timer" ]; then
-    local delta=$(($(date +%s%3N) - timer))
-    # Convertit les millisecondes en secondes
-    local sec=$(bc <<< "scale=3; $delta / 1000")
-    # Stocke le résultat formaté pour le PS1
-    LAST_EXEC_TIME="${sec}s"
+    local now=${EPOCHREALTIME:-$(date +%s.%N)}
+    
+    # Calcul et formatage à 5 décimales via awk (présent par défaut)
+    LAST_EXEC_TIME=$(awk -v start="$timer" -v end="$now" 'BEGIN { printf "%.5fs", end - start }')
     unset timer
   else
     LAST_EXEC_TIME=""
   fi
 }
 
-# Associe les fonctions aux signaux de Bash
+# Association aux hooks Bash
 trap 'timer_start' DEBUG
 PROMPT_COMMAND='timer_stop'
 
-# Intègre le temps dans votre prompt (PS1)
 PS1='$(_prompt_status) \[\e[34m\]le jujudorange \[\e[37m\]:\[\e[32m\] \w \e[33m\][${LAST_EXEC_TIME}]\[\e[m\]\e[36m\]$(display_git_branch) \e[37m\] \n$ '
 fastfetch
 
