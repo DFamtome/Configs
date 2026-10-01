@@ -1,37 +1,37 @@
-window #waybar{ background - color: rgba(0, 0, 0, 0.9) }
-
-#clock
-{
-color:
-    rgb(255, 255, 255);
+* {
+    font-family: monospace;
+    font-size: 13px;
 }
 
-#workspaces {
-background - color : #282a36;
-margin : 0 5px;
-border - radius : 10px;
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.85);
+    color: #c0caf5;
+    border-bottom: 2px solid #7aa2f7;
 }
 
-/* Style de chaque bouton (chaque espace de travail) */
+
 #workspaces button {
-padding : 0 10px;
-color : #f8f8f2;
-border : none;
+    padding: 0 5px;
+    color: #7aa2f7;
 }
 
-/* Style de l'espace de travail actuellement visible/actif */
-#workspaces button.focused {
-color : #4C7899;
-background - color : #333649;
-border - bottom : 3px solid #4C7899;
+#workspaces button.active {
+    background-color: #3b4252;
+    color: #eceff4;
+    border-radius: 4px;
 }
 
-/* Style lorsqu'un espace de travail réclame votre attention */
-#workspaces button.urgent {
-color : #ff5555;
-background - color : #ff5555;
-animation - name : blink;
-animation - duration : 0.5s;
-animation - direction : alternate;
-animation - iteration - count : infinite;
+#clock, #battery, #tray {
+    padding: 0 10px;
+    margin: 4px 2px;
+    background-color: #24283b;
+    border-radius: 4px;
+}
+
+#battery.warning {
+    color: #e0af68;
+}
+
+#battery.critical {
+    color: #f7768e;
 }
