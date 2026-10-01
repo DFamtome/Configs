@@ -2,12 +2,10 @@
 
 int main()
 {
-	
-	char data[] = "Token1 Token2";
-	char* rest = data;
-	const char* delim = " ";
-	my_strtok_r(rest, delim, &rest);
+    char data[] = "Token1 Token2";
+    char *rest = data;
+    const char *delim = " ";
+    my_strtok_r(rest, delim, &rest);
 
-
-	return 0;
+    return 0;
 }

@@ -1,10 +1,10 @@
 void rot_x(char *s, int x)
 {
-	int x1 = x;
-	int x2 = x;
+    int x1 = x;
+    int x2 = x;
 
     x1 %= 26;
-	x2 %= 10;
+    x2 %= 10;
 
     if (!s || (!x1 && !x2))
     {
@@ -15,10 +15,10 @@ void rot_x(char *s, int x)
     {
         x1 += 26;
     }
-	else if (x2 < 0)
-	{
-		x2 += 10;
-	}
+    else if (x2 < 0)
+    {
+        x2 += 10;
+    }
 
     for (int i = 0; s[i] != 0; i++)
     {
@@ -32,10 +32,10 @@ void rot_x(char *s, int x)
         {
             c = (((c - 'a') + x1) % 26) + 'a';
         }
-		else if ('0' <= c && c <= '9')
-		{
-			c = (((c - '0') + x2) % 10) + '0';
-		}
+        else if ('0' <= c && c <= '9')
+        {
+            c = (((c - '0') + x2) % 10) + '0';
+        }
 
         s[i] = c;
     }

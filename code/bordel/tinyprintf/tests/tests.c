@@ -9,7 +9,6 @@
 
 Test(test_simple, formatig_test)
 {
-
     char expected[] = "Hello [42] world!";
     int expected_nb = 17;
 
@@ -47,7 +46,6 @@ Test(test_simple, formatig_test)
               "Expected : '%s', Receive: '%s' (%d).", expected, actual,
               strcmp(actual, expected));
 
-	cr_expect(actual_nb == expected_nb, "Expected : '%d', Receive: '%d'.", expected_nb, actual_nb);
-
+    cr_expect(actual_nb == expected_nb, "Expected : '%d', Receive: '%d'.",
+              expected_nb, actual_nb);
 }
-

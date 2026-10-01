@@ -2,6 +2,6 @@
 
 int main()
 {
-	// Code.c here
-	return 0;
+    // Code.c here
+    return 0;
 }

@@ -76,7 +76,7 @@ _prompt_status() {
     echo -e "\e[0;34m[✘]"
   else
     # Autre erreur : Croix rouge
-    echo -e "\e[0;31m[✘ ($?)]"
+    echo -e "\e[0;31m[✘ ($exit_code)]"
   fi
 }
 

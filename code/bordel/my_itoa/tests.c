@@ -30,4 +30,3 @@ Test(negative, formatig_test)
     cr_expect(strcmp(expected, actual) == 0, "Expected %s, Receive %s.",
               expected, actual);
 }
-

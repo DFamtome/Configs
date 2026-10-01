@@ -5,8 +5,8 @@
 
 Test(test1, formatig_test)
 {
-    int data1[] ={1, 2, 3, 4};
-    int data2[] = {0, 0, 0, 0};
+    int data1[] = { 1, 2, 3, 4 };
+    int data2[] = { 0, 0, 0, 0 };
 
     my_memcpy(data1, data2, 4 * sizeof(int));
 

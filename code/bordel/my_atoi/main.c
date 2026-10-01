@@ -2,6 +2,5 @@
 
 int main(void)
 {
-
     my_atoi("     14");
 }
