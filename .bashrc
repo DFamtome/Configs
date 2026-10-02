@@ -52,7 +52,7 @@ function clang()
 
 function push()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]")
+	clang-format -i $(git ls-files | grep -E "\.[ch]$")
 	git add -A && git commit && git push
 }
 
