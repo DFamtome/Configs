@@ -16,28 +16,23 @@ export NNTPSERVER="news.epita.fr"
 
 export EDITOR=vim
 
-# Color support for less
-#export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-#export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-#export LESS_TERMCAP_me=$'\E[0m'           # end mode
-#export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-#export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-#export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-#export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
-
 # Config perso
-alias loop='~/afs/.scripts/loop.sh'
-alias c_builder='~/afs/.scripts/c_builder.sh'
+alias loop='~/.config/shell/loop.sh'
+alias c_builder='~/.config/shell/c_builder.sh'
 
 alias ls='ls -l --color=auto'
 alias l='ls -la --color=auto'
 alias grep='grep --color'
+alias mnt='udisksctl mount -b'
+alias umnt='udisksctl unmount -b'
 
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
 
-alias h='cd ~/afs/S5/epita-ing-assistants-acu-piscine-grand-bain-2029-ing1-julien.jollivet/'
+# Debian config
+alias dmaj='sudo apt update && sudo apt upgrade'
+alias fmaj='sudo apt update'
+alias amaj='sudo apt upgrade'
 
 function clang()
 {
