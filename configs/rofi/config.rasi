@@ -1,0 +1,4 @@
+
+//@theme "/usr/share/rofi/themes/material.rasi"
+
+@theme "/nix/store/4z2y00d9zhbqy32v4l7am2c9hp30p89a-rofi-2.0.0/share/rofi/themes/material.rasi"
