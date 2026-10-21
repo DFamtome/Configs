@@ -97,7 +97,7 @@ function timer_stop {
 trap 'timer_start' DEBUG
 PROMPT_COMMAND='timer_stop'
 
-PS1='$(_prompt_status) \[\e[34m\]le jujudorange \[\e[37m\]:\[\e[32m\] \w \e[33m\][${LAST_EXEC_TIME}]\[\e[m\]\e[36m\]$(display_git_branch) \e[37m\] \n$ '
+PS1='$(_prompt_status) \[\e[34m\]le \u \[\e[37m\]:\[\e[32m\] \w \e[33m\][${LAST_EXEC_TIME}]\[\e[m\]\e[36m\]$(display_git_branch) \e[37m\] \n$ '
 fastfetch
 
 
