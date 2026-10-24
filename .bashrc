@@ -34,6 +34,65 @@ alias dmaj='sudo apt update && sudo apt upgrade'
 alias fmaj='sudo apt update'
 alias amaj='sudo apt upgrade'
 
+# SSH
+export IP_PORTABLE=100.124.209.21
+export IP_LAPTOP_D=100.96.232.48
+export IP_LAPTOP_C=100.105.168.62
+
+function send_file()
+{
+	if [ $# -ne 3 ]; then
+		echo Argument issue
+		exit 1
+	fi
+
+	if [ ! -f $3 ]; then 
+		echo Fichier invalide
+		exit 1
+	fi
+
+	nc $1 $2 < $3
+}
+
+function receive_file()
+{
+	if [ $# -lt 1 ]; then 
+		echo Pas de port
+		exit 1
+	fi
+
+	file=$2
+
+	if [ $# -eq 1 ]; then
+		file=receive_file
+	fi
+
+	nc -lp $1 > $file
+}
+
+function connect_phone()
+{
+	ssh u0_a268@$IP_PORTABLE -p 8022
+}
+
+function connect_laptop()
+{
+	ssh famtome@$IP_LAPTOP_D
+	if [ $? -eq 0 ]; then
+		exit 0
+	fi
+	
+	echo Laptop non boot sur debian
+	ssh famtome@$IP_LAPTOP_C 
+
+	if [ $? -eq 0 ]; then
+		exit 0
+	fi
+
+	echo Laptop powered off
+	
+}
+
 function clang()
 {
 	if [ -f "./*/*.[ch]" ]; then
