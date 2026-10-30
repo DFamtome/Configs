@@ -3,6 +3,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+cat /etc/os-release | grep NixOS
+
+if [ $? -eq 0 ]; then
 if [ -d ~/afs/bin ] ; then
 	export PATH=~/afs/bin:$PATH
 fi
@@ -10,11 +13,20 @@ fi
 if [ -d ~/.local/bin ] ; then
 	export PATH=~/.local/bin:$PATH
 fi
+fi
 
 export LANG=fr_FR.utf8
 export NNTPSERVER="news.epita.fr"
 
 export EDITOR=vim
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # Config perso
 alias loop='~/.config/shell/loop.sh'
@@ -161,3 +173,5 @@ fastfetch
 
 
 
+export PATH="$PATH:/usr/local/zig"
+. "$HOME/.cargo/env"
