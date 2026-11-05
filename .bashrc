@@ -111,24 +111,18 @@ function connect_laptop()
 
 function clang()
 {
-	if [ -f "./*/*.[ch]" ]; then
-		clang-format -i ./*/*.[ch]
-	fi
-
-	if [ -f "./*.[ch]" ]; then 
-		clang-format -i ./*.[ch]
-	fi
+	clang-format -i $(git ls-files | grep -E "\.[ch]$") &&
 }
 
 function push()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]$") &&
+	clang
 	git add -A && git commit && git push
 }
 
 tag()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]$") ||
+	clang	
 	git add -A && git commit && 
 	git tag -ma $1 && git push --follow-tag
 }
