@@ -111,7 +111,7 @@ function connect_laptop()
 
 function clang()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]$") &&
+	clang-format -i $(git ls-files | grep -E "\.[ch]$") 
 }
 
 function push()
