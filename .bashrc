@@ -3,20 +3,24 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-cat /etc/os-release | grep NixOS
+cat /etc/os-release | grep NixOS > /dev/null
 
 if [ $? -eq 0 ]; then
-if [ -d ~/afs/bin ] ; then
-	export PATH=~/afs/bin:$PATH
+	if [ -d ~/afs/bin ] ; then
+		export PATH=~/afs/bin:$PATH
+	fi
+
+	if [ -d ~/.local/bin ] ; then
+		export PATH=~/.local/bin:$PATH
+	fi
+	export NNTPSERVER="news.epita.fr"
+else
+	export PATH="$PATH:/usr/local/zig"
+	. "$HOME/.cargo/env"
 fi
 
-if [ -d ~/.local/bin ] ; then
-	export PATH=~/.local/bin:$PATH
-fi
-fi
 
 export LANG=fr_FR.utf8
-export NNTPSERVER="news.epita.fr"
 
 export EDITOR=vim
 
@@ -118,12 +122,14 @@ function clang()
 
 function push()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]$")
+	clang-format -i $(git ls-files | grep -E "\.[ch]$") &&
 	git add -A && git commit && git push
 }
 
 tag()
 {
+	clang-format -i $(git ls-files | grep -E "\.[ch]$") ||
+	git add -A && git commit && 
 	git tag -ma $1 && git push --follow-tag
 }
 
@@ -173,5 +179,4 @@ fastfetch
 
 
 
-export PATH="$PATH:/usr/local/zig"
-. "$HOME/.cargo/env"
+
