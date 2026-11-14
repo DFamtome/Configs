@@ -3,18 +3,34 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ -d ~/afs/bin ] ; then
-	export PATH=~/afs/bin:$PATH
+cat /etc/os-release | grep NixOS > /dev/null
+
+if [ $? -eq 0 ]; then
+	if [ -d ~/afs/bin ] ; then
+		export PATH=~/afs/bin:$PATH
+	fi
+
+	if [ -d ~/.local/bin ] ; then
+		export PATH=~/.local/bin:$PATH
+	fi
+	export NNTPSERVER="news.epita.fr"
+else
+	export PATH="$PATH:/usr/local/zig"
+	. "$HOME/.cargo/env"
 fi
 
-if [ -d ~/.local/bin ] ; then
-	export PATH=~/.local/bin:$PATH
-fi
 
 export LANG=fr_FR.utf8
-export NNTPSERVER="news.epita.fr"
 
 export EDITOR=vim
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # Config perso
 alias loop='~/.config/shell/loop.sh'
@@ -95,23 +111,19 @@ function connect_laptop()
 
 function clang()
 {
-	if [ -f "./*/*.[ch]" ]; then
-		clang-format -i ./*/*.[ch]
-	fi
-
-	if [ -f "./*.[ch]" ]; then 
-		clang-format -i ./*.[ch]
-	fi
+	clang-format -i $(git ls-files | grep -E "\.[ch]$") 
 }
 
 function push()
 {
-	clang-format -i $(git ls-files | grep -E "\.[ch]$")
+	clang
 	git add -A && git commit && git push
 }
 
 tag()
 {
+	clang	
+	git add -A && git commit && 
 	git tag -ma $1 && git push --follow-tag
 }
 
@@ -158,6 +170,7 @@ PROMPT_COMMAND='timer_stop'
 
 PS1='$(_prompt_status) \[\e[34m\]le \u \[\e[37m\]:\[\e[32m\] \w \e[33m\][${LAST_EXEC_TIME}]\[\e[m\]\e[36m\]$(display_git_branch) \e[37m\] \n$ '
 fastfetch
+
 
 
 
