@@ -35,6 +35,7 @@ fi
 # Config perso
 alias loop='~/.config/shell/loop.sh'
 alias c_builder='~/.config/shell/c_builder.sh'
+alias vim='nvim'
 
 alias ls='ls -l --color=auto'
 alias l='ls -la --color=auto'
