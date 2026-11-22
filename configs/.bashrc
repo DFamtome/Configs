@@ -49,6 +49,7 @@ alias poweroff='systemctl poweroff'
 alias dmaj='sudo apt update && sudo apt upgrade'
 alias fmaj='sudo apt update'
 alias amaj='sudo apt upgrade'
+alias pmaj='sudo apt autoremove -y && sudo apt update -y && sudo apt full-upgrade -y'
 
 # SSH
 export IP_PORTABLE=100.124.209.21
@@ -123,7 +124,7 @@ function push()
 tag()
 {
 	clang	
-	git add -A && git commit && 
+	git add -A && git commit 
 	git tag -ma $1 && git push --follow-tag
 }
 
