@@ -14,13 +14,8 @@ if [ $? -eq 0 ]; then
 		export PATH=~/.local/bin:$PATH
 	fi
 	export NNTPSERVER="news.epita.fr"
-else
-	export PATH="$PATH:/usr/local/zig"
-	. "$HOME/.cargo/env"
 fi
-
-
-export LANG=fr_FR.utf8
+export LANG=en_US.utf8
 
 export EDITOR=vim
 
